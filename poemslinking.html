@@ -1,70 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aroma of Poetry – Poems</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aroma of poetry</title>
+    <!-- Global styles + page-specific -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/poems.css" />
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <!-- Font Awesome (icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- ===== Sub-Hero Header ===== -->
+    <header class="sub-hero">
+      <div class="hero-overlay"></div>
+      <nav class="navbar">
+        <a href="index.html" class="logo">Aroma&nbsp;of&nbsp;Poetry</a>
+        <input type="checkbox" id="nav-toggle" />
+        <label for="nav-toggle" class="burger"><span></span></label>
+        <ul class="nav-menu">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#featured">Featured</a></li>
+          <li><a href="index.html#community">Submit&nbsp;Poem</a></li>
+        </ul>
+      </nav>
+      <div class="sub-hero-content">
+        <h1>Poems&nbsp;Gallery</h1>
+        <p>Browse&nbsp;our&nbsp;curated&nbsp;collection&nbsp;of&nbsp;verses</p>
+      </div>
+      <!-- floating flowers reuse -->
+      <div class="flower">
+        <img src="poems/flower brain in the style of monument valley.jpg" />
+        <img src="poems/flower brain in the style of monument valley.jpg" />
+        <img src="poems/flower brain in the style of monument valley.jpg" />
+        <img src="poems/flower brain in the style of monument valley.jpg" />
+        <img src="poems/flower brain in the style of monument valley.jpg" />
+      </div>
+    </header>
 
-<body>
-
-    <div class="image">
-        <div class="flower">
-            <img src="poems\flower brain in the style of monument valley.jpg">
-            <img src="poems\flower brain in the style of monument valley.jpg">
-            <img src="poems\flower brain in the style of monument valley.jpg">
-            <img src="poems\flower brain in the style of monument valley.jpg">
-            <img src="poems\flower brain in the style of monument valley.jpg">
-        </div>
-        <header>
-
-            <h1>AROMA OF POERTY</h1>
-        </header>
-    </div>
-    <nav>
-            <a href="index.html"><i class="fa fa-fw fa-home"></i>Home</a>
-       
-    </nav>
     <main>
-        <section>
-            <h3 class="custom"><b>POEMS</b></h3>
-    <div class="poem">
-      <h2>Promises</h2>
-    <img src="poems\11.JPG" width="650">
-    <br>
-    <h2>As bitter As truth</h2>
-    <img src="poems\POEM.JPG" width="650">
-    <br>
-    <h2>Hands</h2>
-    <img src="poems\POEM 2.JPG" width="650">
-    <br>
-    <h2>Purity</h2>
-    <img src="poems\13.JPG" width="650">
-    <br>
-    <h2>Single Sided</h2>
-    <img src="poems\poem 3.JPG" width="650">
-    <br>
-    <h2>Daydreaming</h2>
-    <img src="poems\12.JPG" width="650">
-    <br>
-    </div>
-    
-        <footer>
-            <a href="links.html">FAQ</a>
-            <a href="links.html">Contact Us</a>
-            <a href="links.html">Terms of Use</a>
-            <a href="links.html">Privacy Policy</a>
-            <a href="links.html">Refund Policy</a>
-
-        </footer>
-</section>
+      <section class="section poems-section">
+        <h2>All&nbsp;Poems</h2>
+        <div class="poem-grid">
+          <article class="poem-card">
+            <h3>Promises</h3>
+            <div class="clickable-image" data-src="poems/11.JPG">
+              <img src="poems/11.JPG" alt="Promises" />
+            </div>
+          </article>
+          <article class="poem-card">
+            <h3>As Bitter as Truth</h3>
+            <div class="clickable-image" data-src="poems/POEM.JPG">
+              <img src="poems/POEM.JPG" alt="As Bitter as Truth" />
+            </div>
+          </article>
+          <article class="poem-card">
+            <h3>Hands</h3>
+            <div class="clickable-image" data-src="poems/POEM 2.JPG">
+              <img src="poems/POEM 2.JPG" alt="Hands" />
+            </div>
+          </article>
+          <article class="poem-card">
+            <h3>Purity</h3>
+            <div class="clickable-image" data-src="poems/13.JPG">
+              <img src="poems/13.JPG" alt="Purity" />
+            </div>
+          </article>
+          <article class="poem-card">
+            <h3>Single&nbsp;Sided</h3>
+            <div class="clickable-image" data-src="poems/poem 3.JPG">
+              <img src="poems/poem 3.JPG" alt="Single Sided" />
+            </div>
+          </article>
+          <article class="poem-card">
+            <h3>Daydreaming</h3>
+            <div class="clickable-image" data-src="poems/12.JPG">
+              <img src="poems/12.JPG" alt="Daydreaming" />
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
 
-</body>
+    <!-- ===== Modal Viewer ===== -->
+    <div class="image-modal" id="imageModal">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="Enlarged view" />
+    </div>
 
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="links.html">FAQ</a>
+        <a href="links.html">Contact</a>
+        <a href="links.html">Terms</a>
+        <a href="links.html">Privacy</a>
+        <a href="links.html">Refunds</a>
+      </div>
+      <p class="copyright">&copy; <span id="year"></span> Aroma of Poetry. All rights reserved.</p>
+    </footer>
+
+    <button id="scrollTop" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+      // dynamic year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // scroll-to-top
+      const btn = document.getElementById('scrollTop');
+      window.addEventListener('scroll', () => {
+        btn.style.display = window.scrollY > 300 ? 'grid' : 'none';
+      });
+      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // modal logic
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+
+      document.querySelectorAll('.clickable-image').forEach(el => {
+        el.addEventListener('click', () => {
+          const src = el.getAttribute('data-src');
+          modalImg.src = src;
+          modal.style.display = 'flex';
+        });
+      });
+
+      function closeModal() {
+        modal.style.display = 'none';
+        modalImg.src = '';
+      }
+
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      modal.addEventListener('click', e => {
+        if (e.target === modal) closeModal();
+      });
+    </script>
+  </body>
 </html>

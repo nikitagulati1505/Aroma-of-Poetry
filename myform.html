@@ -1,71 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Form</title>
-    <link rel="stylesheet" href="css/payment.css">
-</head>
-<body>
-    <div class="container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poem Submission Payment</title>
+
+    <!-- Global + page styles -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/payment.css" />
+  </head>
+  <body>
+    <main class="pay-main">
+      <section class="pay-card">
+        <h1 class="pay-title">Payment&nbsp;Form</h1>
         <form id="paymentForm">
-            <h2 class="main">PAYMENT FORM</h2>
-            <h3>CONTACT INFORMATION</h3>
-            <p>NAME: *<input type="text" name="name" required placeholder="Nancy Dua"></p>
-            <fieldset>
-                <p>
-                    GENDER *
-                    <label><input type="radio" name="gender" value="male" required> Male</label>
-                    <label><input type="radio" name="gender" value="female" required> Female</label>
-                </p>
-            </fieldset>
-            <p>
-                ADDRESS:<textarea name="address" cols="100" rows="8" id="address" placeholder="Enter your address"></textarea>
-            </p>
-            <p>
-                EMAIL: *<input type="email" name="email" id="email" required placeholder="xyz@gmail.com">
-            </p>
-            <p>PINCODE:<input type="number" name="pincode" id="pincode" placeholder="123456"></p>
-            <hr>
-            <p>
-                <h3>PAYMENT MODE</h3>
-            </p>
-            <p>CARD type *<select name="card_type" id="card_type" required>
-                <option value="">--select a card type--</option>
-                <option value="rupay">Rupay</option>
-                <option value="visa">Visa</option>
-                <option value="mastercard">Mastercard</option>
-            </select></p>
-            <p>
-                CARD NUMBER *<input type="text" name="card_number" id="card_number" required placeholder="1111-2222-3333-4444">
-            </p>
-            <p>
-                CVV *<input type="password" name="cvv" id="cvv" required placeholder="123">
-            </p>
-            <input type="submit" value="PAY NOW"><br>
-            <p>* denotes required field</p>
+          <!-- Contact -->
+          <h2 class="section-title">Contact&nbsp;Information</h2>
+          <label>Full&nbsp;Name*<input type="text" name="name" required placeholder="Nancy Dua" /></label>
+
+          <fieldset class="gender-field">
+            <legend>Gender*</legend>
+            <label><input type="radio" name="gender" value="male" required /> Male</label>
+            <label><input type="radio" name="gender" value="female" required /> Female</label>
+          </fieldset>
+
+          <label>Address<textarea name="address" rows="4" placeholder="Enter your address"></textarea></label>
+          <label>Email*<input type="email" name="email" required placeholder="xyz@gmail.com" /></label>
+          <label>Pincode<input type="number" name="pincode" placeholder="123456" /></label>
+
+          <!-- Payment -->
+          <h2 class="section-title">Payment&nbsp;Details</h2>
+          <label>Card&nbsp;Type*<select name="card_type" required>
+              <option value="">— select —</option>
+              <option value="rupay">Rupay</option>
+              <option value="visa">Visa</option>
+              <option value="mastercard">MasterCard</option>
+            </select></label>
+          <label>Card&nbsp;Number*<input type="text" name="card_number" required placeholder="1111‑2222‑3333‑4444" /></label>
+          <label>CVV*<input type="password" name="cvv" required placeholder="123" /></label>
+
+          <button type="submit" class="btn-primary pay-btn">Pay&nbsp;Now</button>
+          <p class="note">* required fields</p>
         </form>
-    </div>
+      </section>
+    </main>
 
     <script>
-        // Function to display popup message and reset form
-        function handleFormSubmission(event) {
-            // Prevent the default form submission behavior
-            event.preventDefault();
-
-            // Display the popup message
-            alert("Your response has been submitted!");
-
-            // Reset the form
-            document.getElementById('paymentForm').reset();
-        }
-
-        // Get the form element by its ID
-        const form = document.getElementById('paymentForm');
-
-        // Add an event listener for form submission
-        form.addEventListener('submit', handleFormSubmission);
+      document.getElementById('paymentForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Your response has been submitted!');
+        this.reset();
+      });
     </script>
-</body>
+  </body>
 </html>

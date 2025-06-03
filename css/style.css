@@ -1,370 +1,434 @@
+/* -------------------- CSS Reset -------------------- */
 * {
   box-sizing: border-box;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-style: italic;
-  font-weight: 500;
-  font-size: medium;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  background-color: #f5f7ff;
+  color: #333;
 }
 
-header {
-  background-color: #7286D3;
-  padding: 30px;
-}
-
-header h1 {
-  font-family: Georgia, 'Times New Roman', Times, serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, 'Times New Roman', Times, serif;
-  text-align: center;
-  font-size: 40px;
-  color: black;
-  font-weight: 400;
-font-style: italic;
-}
-
-.custom {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 30px;
-  margin-top: 0px;
-  padding-top: 25px;
-}
-
-.poem {
-  text-align: center;
-  margin: 20px auto;
-}
-
-.poem h2 {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 24px;
-  font-weight: 600;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  color: rgba(0, 0, 128, 0.877);
-}
-
-.poem img {
+img {
+  max-width: 100%;
   display: block;
-  margin: 10px auto;
-  max-width: 650px;
 }
 
-nav {
-  background-color: rgba(61, 100, 177, 0.491);
-  overflow: hidden;
-  
+/* -------------------- Variables -------------------- */
+:root {
+  --accent: #7286d3;
+  --accent-dark: #5c6bc0;
+  --bg-light: #e6eaff;
+  --text-dark: #0d1130;
+}
+
+/* -------------------- Reusable -------------------- */
+.section {
+  padding: 4rem 1rem;
+}
+.section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.25rem;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+  text-align: center;
+}
+.btn-primary,
+.btn-secondary {
+  background-color: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: var(--accent-dark);
+}
+
+/* -------------------- Hero -------------------- */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url('../poems/flower brain in the style of monument valley.jpg') center/cover no-repeat;
+  color: #fff;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 17, 48, 0.55);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 0.5rem;
+}
+.hero-content p {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+/* -------------------- Navbar -------------------- */
+.navbar {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: rgba(245, 247, 255, 0.05);
+  backdrop-filter: blur(6px);
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Burger */
+#nav-toggle {
+  display: none;
+}
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+.burger span,
+.burger span::before,
+.burger span::after {
+  display: block;
+  background: #fff;
+  height: 3px;
+  width: 24px;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+.burger span::before,
+.burger span::after {
+  content: '';
+  position: relative;
+}
+.burger span::before {
+  top: -7px;
+}
+.burger span::after {
+  top: 7px;
+}
+
+/* Menu */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+.nav-menu li a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s;
+}
+.nav-menu li a:hover::after {
   width: 100%;
 }
 
-nav a {
-  float: left ;
-  color: black;
-  text-align: center;
-  padding: 16px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  font-weight: bolder;
-  width: 25%;
+/* -------------------- About -------------------- */
+.about-wrapper {
+  display: grid;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-
-
-
-
-nav a:hover {
-  background-color: #ddddddcf;
-  color: black;
-}
-
-nav a.active {
-  background-color: #04AA6D;
-  color: black;
-}
-
-
-
-main {
-  background-color: #8ea6e9aa;
-}
-
-h2 {
-  padding: 20px;
-}
-
-section:nth-child(even) {
-  background-color: #aac4ff0f;
-}
-
-section {
-  min-height: 80vh;
-
-}
-
-video {
-  padding: 5px;
-}
-
-.learnvideo {
-  margin-top: -50px;
-}
-
-iframe {
-  height: 75vh;
-}
-
-.button {
-  border-radius: 4px;
-  background-color: rgba(64, 69, 79, 0.411);
-  border: none;
-  color: black;
-  text-align: center;
-  font-weight: bold;
-  font-size: 15px;
-  padding: 10px;
-  width: 30px;
-  transition: all 0.7s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.7s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.7s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-img {
-  padding: 10px;
-  border: 4px solid;
-
-}
-
-section h5 {
-  margin: 40px;
-}
-
-footer {
-  background-color: rgba(64, 69, 79, 0.411);
-  overflow: hidden;
-}
-
-footer a {
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  font-weight: bolder;
-}
-
-
-
-
-
-footer a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-footer a.active {
-  background-color: #04AA6D;
-  color: black;
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-
-.center h3 {
-  color: rgba(0, 0, 128, 0.783);
-  margin: 0px;
-}
-
-
-
-
-
-.text-and-image {
-  display: flex;
-  align-items: center;
-  margin-left: 170px;
-  margin-bottom: 30px;
-  position: relative;
-  animation-name: nik;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-}
-
-@keyframes nik {
-  from {
-    opacity: 0.2;
+@media (min-width: 768px) {
+  .about-wrapper {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
+}
+.about-text p {
+  font-size: 1.1rem;
+}
+.about-img {
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  width:75%;
+}
 
+/* -------------------- Writing Poetry -------------------- */
+.learnvideo {
+  margin: 1.5rem auto 2.5rem;
+  width: fit-content;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Slider Box */
+.slider-box {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: var(--bg-light);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  height: 400px; /* lock height */
+  overflow-y: auto;
+}
+.slide {
+  display: none;
+  animation: fadein 0.8s;
+}
+.slide.active {
+  display: block;
+}
+.slider-buttons {
+  text-align: center;
+  margin-top: 1rem;
+}
+.slider-buttons button {
+  background-color: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 0 0.5rem;
+  transition: background-color 0.25s ease;
+}
+.slider-buttons button:hover {
+  background-color: var(--accent-dark);
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
-
-
-
-.text-and-image h3 {
-  margin-right: 10px;
-  font-weight: 400
-    /* Adjust the spacing between the text and image */
-}
-.text-and-image img {
-  background-color: rgba(236, 171, 193, 0.203);
-  animation: color-transition 4s ease-in-out infinite;
-}
-
-@keyframes color-transition {
-  0% {
-    background-color: rgb(228, 156, 180);
-    opacity: 1;
-    transform: scale(1.02);
-  }
-  50% {
-    background-color: rgba(236, 171, 193, 0.203);
-    opacity: 0.9;
-    transform: scale(1);
-  }
-  100% {
-    background-color: rgb(228, 156, 180);
-    opacity: 1;
-    transform: scale(1.02);
-  }
-}
-
+/* Slide content */
 .points {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-
+  gap: 1.5rem;
 }
-
-.content {
-  flex: 1;
-}
-
 .content h3 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: left;
-  margin-left: 30px;
-  color: rgba(0, 0, 128, 0.783);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-dark);
 }
-
-.points img {
-  margin-right: 30px;
-  margin-left: 20px;
-  background-color: rgba(236, 171, 193, 0.203);
-  animation: color-transition 5s ease-in-out infinite;
-}
-
-
-
-@keyframes color-transition {
-  0% {
-    background-color: rgb(228, 156, 180);
-    opacity: 1;
-    transform: scale(1.02);
-  }
-  50% {
-    background-color: rgba(236, 171, 193, 0.203);
-    opacity: 0.9;
-    transform: scale(1);
-  }
-  100% {
-    background-color: rgb(228, 156, 180);
-    opacity: 1;
-    transform: scale(1.02);
-  }
-}
-
-
 .content p {
-  line-height: 1.5;
-  text-align: left;
-  margin-left: 30px;
-}
-
-.content li {
   text-align: left;
 }
-
-.expression img{
-  background-color: rgba(236, 171, 193, 0.203);
-  animation: color-transition 5s ease-in-out infinite;
-
-}
-
-
-  
-@keyframes color-transition {
-  0% {
-    background-color: rgb(228, 156, 180);
-    opacity: 1;
-    transform: scale(1.02);
-  }
-  50% {
-    background-color: rgba(236, 171, 193, 0.203);
-    opacity: 0.9;
-    transform: scale(1);
-  }
-  100% {
-    background-color: rgb(228, 156, 180);
-    opacity: 1;
-    transform: scale(1.02);
+@media (max-width: 600px) {
+  .points {
+    flex-direction: column;
   }
 }
- 
-.flower img{
-  width: 50px;
-  border-radius: 90%;
-  animation: flowers 7s  linear infinite forwards;
+
+/* -------------------- Featured Poems -------------------- */
+.featured {
+  background: linear-gradient(180deg, var(--bg-light) 0%, #fff 100%);
+}
+.poem-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.poem-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+.poem-card:hover {
+  transform: translateY(-6px);
+}
+.poem-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.125rem;
+  padding: 0.75rem;
+  color: var(--text-dark);
+}
+
+/* -------------------- Community Upload -------------------- */
+.community {
+  background: var(--bg-light);
+  text-align: center;
+}
+.upload-box {
+  background: #fff;
+  padding: 2rem;
+  margin: 2rem auto 0;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+.upload-box input[type='file'] {
+  margin: 1rem 0;
+}
+.note {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* -------------------- Testimonials -------------------- */
+.testimonials {
+  background: #fff;
+  text-align: center;
+}
+.testimonials blockquote {
+  font-style: italic;
+  margin: 1.5rem auto;
+  max-width: 700px;
+  position: relative;
+  padding: 1.5rem 1rem;
+}
+.testimonials blockquote::before {
+  content: '\f10d';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+.testimonials cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* -------------------- Newsletter -------------------- */
+.newsletter {
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+}
+.newsletter-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.newsletter-form input[type='email'] {
+  padding: 0.75rem 1rem;
   border: none;
+  border-radius: 6px;
+  flex: 1 1 250px;
+  max-width: 350px;
 }
-.flower{
+.newsletter-form button {
+  background: #fff;
+  color: var(--accent);
+}
+.newsletter-form button:hover {
+  background: #f0f0ff;
+}
+
+/* -------------------- Footer -------------------- */
+.footer {
+  background: #181a3d;
+  color: #bbb;
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+.footer-links {
+  margin-bottom: 1rem;
+}
+.footer-links a {
+  color: #bbb;
+  margin: 0 0.75rem;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* -------------------- Scroll To Top -------------------- */
+#scrollTop {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: none;
+  place-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+#scrollTop:hover {
+  background: var(--accent-dark);
+}
+
+/* -------------------- Flower Animation (unchanged) -------------------- */
+.flower {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   position: absolute;
-  opacity: 0.6px;
+  opacity: 0.6;
   top: -70px;
-  
 }
-
-@keyframes flowers
-{
+.flower img {
+  width: 60px;
+  border-radius: 50%;
+  border: none;
+  animation: flowers 7s linear infinite forwards;
+}
+@keyframes flowers {
   0% {
     transform: translateY(0) rotate(0deg);
     opacity: 0;
@@ -376,50 +440,89 @@ footer a.active {
     opacity: 0.6;
   }
   100% {
-    transform: translateY(+25vh) rotate(360deg);
+    transform: translateY(25vh) rotate(360deg);
     opacity: 0;
   }
-  
 }
-.flower img:nth-child(1)
-{
+.flower img:nth-child(1) {
   animation-delay: 2s;
-width: 75px;
+  width: 75px;
 }
-.flower img:nth-child(2)
-{
+.flower img:nth-child(2) {
   animation-delay: 1s;
   width: 80px;
-  
 }
-.flower img:nth-child(3)
-{
+.flower img:nth-child(3) {
   animation-delay: 3s;
   width: 65px;
 }
-.flower img:nth-child(4)
-{
+.flower img:nth-child(4) {
   animation-delay: 4.5s;
   width: 75px;
 }
-.flower img:nth-child(5)
-{
+.flower img:nth-child(5) {
   animation-delay: 2.4s;
   width: 55px;
 }
 
-.upload{
-  margin: auto;
-  margin-bottom: 50px;
-  width: 60%;
-  height:60%;
-  padding: 20px;
-  background: #8ea6e9aa;
-  border-radius: 1%;
-  transition: transform 2s ease-in-out;
-
-  
+/* -------------------- Responsive Nav -------------------- */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(13, 17, 48, 0.95);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  #nav-toggle:checked ~ .nav-menu {
+    max-height: 300px;
+  }
+  .nav-menu li {
+    padding: 1rem 0;
+    text-align: center;
+  }
 }
-.upload:hover {
-  transform: scale(1.05);
+.more-poems-btn {
+  text-align: center;
+  margin-top: 2rem;
+}
+.more-poems-btn .btn-primary {
+  font-size: 1rem;
+  padding: 0.65rem 1.5rem;
+}
+/* Modal Viewer Styles */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.image-modal .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
 }

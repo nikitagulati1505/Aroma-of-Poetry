@@ -1,0 +1,116 @@
+/******** Poems Page Overrides ********/
+
+/* inherit global variables and fonts from style.css */
+
+/* Sub-Hero Section */
+.sub-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url('../poems/sample1.jpg') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+}
+.sub-hero-content {
+  position: relative;
+  z-index: 1;
+}
+.sub-hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+.sub-hero-content p {
+  font-size: 1.1rem;
+}
+
+/* Poems Grid */
+.poems-section {
+  background: var(--bg-light);
+}
+.poem-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.poem-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.poem-card:hover {
+  transform: translateY(-6px);
+}
+.poem-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  padding: 0.75rem 0.75rem 0;
+  color: var(--text-dark);
+}
+.poem-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Keep flower animation sizes consistent with global */
+.flower img {
+  width: 55px;
+  opacity: 0.6;
+}
+
+@keyframes flowers {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  50%, 70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(25vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.flower img:nth-child(1) { animation-delay: 0.2s; width: 75px; }
+.flower img:nth-child(2) { animation-delay: 0.4s; width: 80px; }
+.flower img:nth-child(3) { animation-delay: 0.6s; width: 65px; }
+.flower img:nth-child(4) { animation-delay: 0.8s; width: 75px; }
+.flower img:nth-child(5) { animation-delay: 1s; width: 55px; }
+/* Modal Viewer Styles */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.image-modal .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}

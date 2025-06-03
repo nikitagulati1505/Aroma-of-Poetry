@@ -1,55 +1,76 @@
-*{
-    box-sizing: border-box;
+/******** Payment Page Overrides ********/
 
+.pay-main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-light);
 }
 
-body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin: 70px 95px;
-    font-size: 15px;
-    padding: 8px;
-    background-color:#8ea6e9aa;
+.pay-card {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  max-width: 520px;
+  width: 100%;
+}
+.pay-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--text-dark);
+}
+.section-title {
+  font-size: 1.25rem;
+  margin: 1.75rem 0 0.75rem;
+  color: var(--text-dark);
 }
 
-.container{
-    background-color: rgba(93, 100, 114, 0.317);
-    padding: 5px 20px 15px 20px;
-    border-radius: 4px;
+/* Form Elements */
+label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  color: #444;
+}
+label input,
+label select,
+label textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  margin-top: 0.35rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+}
+.gender-field {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+}
+.gender-field legend {
+  padding: 0 0.35rem;
+  font-size: 0.95rem;
+}
+.gender-field label {
+  display: inline-block;
+  margin-right: 1.25rem;
+  margin-bottom: 0;
 }
 
-input[type="text"],input[type="email"],
-input[type="number"],
-input[type="password"],input[type="date"],textarea,
-select{
-    width: 100%;
-    padding: 12px;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    margin: 10px;
+.pay-btn {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
 }
-
-fieldset{
-    
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid lightgrey;
+.note {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #777;
 }
-
-.main{
-    text-align: center;
-}
-
-input[type="submit"]
-{
-    background-color: rgba(64, 69, 79, 0.144);
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor:pointer;
-    width:100%
-}
-
-input[type="submit"]:hover{
-    background-color: rgba(64, 69, 79, 0.322);
-}
-
