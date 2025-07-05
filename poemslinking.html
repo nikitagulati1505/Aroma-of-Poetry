@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- SEO Meta Tags -->
+<meta name="description" content="Aroma of Poetry - Share and discover beautiful poetry. Submit your verses and explore curated collections of poems.">
+<meta name="keywords" content="poetry, poems, writing, literature, creative writing, submit poetry">
+<meta name="author" content="Aroma of Poetry">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Aroma of Poetry - Where Words Blossom">
+<meta property="og:description" content="Discover, Create, Share Poetry">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nikitagulati1505.github.io/Aroma-of-Poetry/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="poems/flower brain in the style of monument valley.jpg">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,6 +60,10 @@
     <main>
       <section class="section poems-section">
         <h2>All&nbsp;Poems</h2>
+        <div class="search-container">
+  <input type="text" id="poemSearch" placeholder="Search poems by title..." />
+  <button onclick="filterPoems()">Search</button>
+</div>
         <div class="poem-grid">
           <article class="poem-card">
             <h3>Promises</h3>
@@ -143,6 +160,22 @@
       modal.addEventListener('click', e => {
         if (e.target === modal) closeModal();
       });
+       function filterPoems() {
+    const searchTerm = document.getElementById('poemSearch').value.toLowerCase();
+    const poemCards = document.querySelectorAll('.poem-card');
+    
+    poemCards.forEach(card => {
+      const title = card.querySelector('h3').textContent.toLowerCase();
+      if (title.includes(searchTerm)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Real-time search
+  document.getElementById('poemSearch').addEventListener('input', filterPoems);
     </script>
   </body>
 </html>

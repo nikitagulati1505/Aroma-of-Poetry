@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- SEO Meta Tags -->
+<meta name="description" content="Aroma of Poetry - Share and discover beautiful poetry. Submit your verses and explore curated collections of poems.">
+<meta name="keywords" content="poetry, poems, writing, literature, creative writing, submit poetry">
+<meta name="author" content="Aroma of Poetry">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Aroma of Poetry - Where Words Blossom">
+<meta property="og:description" content="Discover, Create, Share Poetry">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nikitagulati1505.github.io/Aroma-of-Poetry/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="poems/flower brain in the style of monument valley.jpg">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,12 +59,53 @@
       </section>
     </main>
 
-    <script>
-      document.getElementById('paymentForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('Your response has been submitted!');
-        this.reset();
-      });
-    </script>
+   <script>
+document.getElementById('paymentForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const body = {
+    name: formData.get('name'),
+    gender: formData.get('gender'),
+    address: formData.get('address'),
+    email: formData.get('email'),
+    pincode: formData.get('pincode'),
+    card_type: formData.get('card_type'),
+    card_number: formData.get('card_number'),
+    cvv: formData.get('cvv'),
+    amount: 80
+  };
+
+  // ⬇️ Grab poemId from query string
+  const params = new URLSearchParams(window.location.search);
+  const poemId = params.get('poemId');
+
+  if (poemId) {
+    body.poemId = poemId;
+  }
+
+  try {
+    const response = await fetch('http://localhost:5000/api/payments/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert('Payment successful! Your poem will now be reviewed.');
+      form.reset();
+    } else {
+      alert(data.message || 'Payment failed');
+    }
+  } catch (err) {
+    alert('Something went wrong. Please try again.');
+  }
+});
+</script>
+
   </body>
 </html>

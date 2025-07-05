@@ -86,6 +86,62 @@
 .flower img:nth-child(4) { animation-delay: 0.8s; width: 75px; }
 .flower img:nth-child(5) { animation-delay: 1s; width: 55px; }
 /* Modal Viewer Styles */
+/* -------------------- Enhanced Poems Page Mobile -------------------- */
+@media (max-width: 480px) {
+  .sub-hero {
+    min-height: 50vh;
+  }
+  
+  .sub-hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .sub-hero-content p {
+    font-size: 1rem;
+  }
+  
+  .poem-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .poem-card h3 {
+    font-size: 1.125rem;
+    padding: 1rem;
+  }
+}
+
+/* -------------------- Search Bar Styles -------------------- */
+.search-container {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.search-container button {
+  padding: 0.75rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+  background: var(--accent-dark);
+}
 .image-modal {
   position: fixed;
   top: 0;

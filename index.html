@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- SEO Meta Tags -->
+<meta name="description" content="Aroma of Poetry - Share and discover beautiful poetry. Submit your verses and explore curated collections of poems.">
+<meta name="keywords" content="poetry, poems, writing, literature, creative writing, submit poetry">
+<meta name="author" content="Aroma of Poetry">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Aroma of Poetry - Where Words Blossom">
+<meta property="og:description" content="Discover, Create, Share Poetry">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nikitagulati1505.github.io/Aroma-of-Poetry/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="poems/flower brain in the style of monument valley.jpg">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -77,13 +90,16 @@
       <section id="write" class="section write">
         <h2>How&nbsp;to&nbsp;Begin&nbsp;Writing</h2>
         <div class="learnvideo">
-          <video
-            src="poetry.mp4"
-            controls
-            width="360"
-            poster="poems/a beautiful woman in a white dress is reading a bo.jpg"
-          ></video>
-        </div>
+  <iframe
+    width="360"
+    height="203"
+    src="https://www.youtube.com/embed/3sVD4VLjR8U"
+    title="Poetry Writing Tutorial"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
 
         <!-- Slider -->
         <div class="slider-box">
@@ -204,11 +220,12 @@
         </p>
         <div class="upload-box">
           <h3>Upload&nbsp;Your&nbsp;Poem</h3>
-          <form action="/action_page.php">
-            <input type="file" id="img" name="img" accept="image/*" />
-            <button type="submit" class="btn-secondary">Submit</button>
-          </form>
-          <p class="note">Image must be JPEG/JPG.</p>
+        <form id="poemUploadForm" enctype="multipart/form-data">
+  <input type="file" id="poemImage" name="poem" accept="image/*" required />
+  <button type="submit" class="btn-secondary">Submit</button>
+</form>
+<p class="note" id="poemUploadMessage">Image must be JPEG/JPG.</p>
+
         </div>
       </section>
 
@@ -226,14 +243,83 @@
       </section>
 
       <!-- ============ Newsletter =========== -->
-      <section id="newsletter" class="section newsletter">
-        <h2>Stay&nbsp;Inspired</h2>
-        <p>Get monthly prompts, featured poems, and writing tips straight to your inbox.</p>
-        <form class="newsletter-form" action="#">
-          <input type="email" placeholder="Enter your email" required />
-          <button type="submit" class="btn-primary">Subscribe</button>
-        </form>
-      </section>
+      <section class="newsletter section" id="newsletter">
+  <h2>Subscribe to Our Newsletter</h2>
+  <form class="newsletter-form" id="newsletterForm">
+    <input type="email" name="email" placeholder="Enter your email" required />
+    <button type="submit" class="btn-primary">Subscribe</button>
+  </form>
+  <p id="newsletterMessage" style="margin-top: 1rem;"></p>
+</section>
+
+<script>
+  document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const email = this.email.value;
+
+    try {
+      const response = await fetch('http://localhost:5000/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json();
+      const messageEl = document.getElementById('newsletterMessage');
+
+      if (data.success) {
+        messageEl.textContent = 'Subscribed successfully!';
+        messageEl.style.color = 'green';
+        this.reset();
+      } else {
+        messageEl.textContent = data.message || 'Subscription failed';
+        messageEl.style.color = 'red';
+      }
+    } catch (err) {
+      document.getElementById('newsletterMessage').textContent = 'Something went wrong.';
+      document.getElementById('newsletterMessage').style.color = 'red';
+    }
+  });
+
+  document.getElementById('poemUploadForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const fileInput = document.getElementById('poemImage');
+  const messageEl = document.getElementById('poemUploadMessage');
+
+  if (fileInput.files.length === 0) {
+    messageEl.textContent = 'Please select an image file to upload.';
+    messageEl.style.color = 'red';
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('poem', fileInput.files[0]);
+
+  try {
+    const response = await fetch('http://localhost:5000/api/poems/upload', {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      messageEl.textContent = 'Poem uploaded successfully!';
+      messageEl.style.color = 'green';
+      form.reset();
+    } else {
+      messageEl.textContent = result.message || 'Upload failed.';
+      messageEl.style.color = 'red';
+    }
+  } catch (error) {
+    messageEl.textContent = 'Something went wrong during upload.';
+    messageEl.style.color = 'red';
+  }
+});
+
+</script>
+
     </main>
 
     <!-- ============ Footer =========== -->
@@ -258,50 +344,156 @@
   <img id="modalImage" src="" alt="Enlarged view" />
 </div>
 
-    <script>
-      // Slider logic
-      let currentSlide = 0;
-      const slides = document.querySelectorAll('.slide');
-      function changeSlide(direction) {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + direction + slides.length) % slides.length;
-        slides[currentSlide].classList.add('active');
+ <script>
+  // Newsletter form submission
+  document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const email = this.email.value;
+    const messageEl = document.getElementById('newsletterMessage');
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch('http://localhost:5000/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json();
+      console.log("Newsletter response:", data);
+
+      if (response.ok && data.success) {
+        messageEl.textContent = data.message || 'Subscribed successfully!';
+        messageEl.style.color = 'green';
+        this.reset();
+      } else {
+        messageEl.textContent = data.message || 'Subscription failed.';
+        messageEl.style.color = 'red';
       }
+    } catch (err) {
+      console.error('Newsletter subscription error:', err);
+      messageEl.textContent = 'Something went wrong. Please try again.';
+      messageEl.style.color = 'red';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
 
-      // Dynamic year in footer
-      document.getElementById('year').textContent = new Date().getFullYear();
+  // Upload poem and redirect to payment
+  document.getElementById('poemUploadForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-      // Scroll-to-top button
-      const btn = document.getElementById('scrollTop');
-      window.addEventListener('scroll', () => {
-        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    const form = e.target;
+    const fileInput = document.getElementById('poemImage');
+    const messageEl = document.getElementById('poemUploadMessage');
+
+    if (fileInput.files.length === 0) {
+      messageEl.textContent = 'Please select an image file to upload.';
+      messageEl.style.color = 'red';
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('poem', fileInput.files[0]);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/poems/upload', {
+        method: 'POST',
+        body: formData
       });
-      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    // modal logic for featured poems
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImage');
 
-      document.querySelectorAll('.clickable-image').forEach(el => {
-        el.addEventListener('click', () => {
-          const src = el.getAttribute('data-src');
-          modalImg.src = src;
-          modal.style.display = 'flex';
-        });
-      });
-
-      function closeModal() {
-        modal.style.display = 'none';
-        modalImg.src = '';
+      const result = await response.json();
+      if (result.success) {
+        const poemId = result.poemId;
+        messageEl.textContent = 'Poem uploaded! Redirecting to payment...';
+        messageEl.style.color = 'green';
+        form.reset();
+        setTimeout(() => {
+          window.location.href = `myform.html?poemId=${poemId}`;
+        }, 1000);
+      } else {
+        messageEl.textContent = result.message || 'Upload failed.';
+        messageEl.style.color = 'red';
       }
+    } catch (error) {
+      messageEl.textContent = 'Something went wrong during upload.';
+      messageEl.style.color = 'red';
+    }
+  });
 
-      window.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeModal();
-      });
+  // Remaining features unchanged: slider, modal, scroll-to-top, etc.
 
-      modal.addEventListener('click', e => {
-        if (e.target === modal) closeModal();
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  function changeSlide(direction) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+  setInterval(() => changeSlide(1), 8000);
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.scrollY > 300 ? 'grid' : 'none';
+  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  function openModal(src, title) {
+    modalImg.src = src;
+    modalImg.alt = title || 'Poem image';
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.style.display = 'none';
+    modalImg.src = '';
+    document.body.style.overflow = 'auto';
+  }
+  document.querySelectorAll('.clickable-image').forEach(el => {
+    el.addEventListener('click', () => {
+      const src = el.getAttribute('data-src');
+      const title = el.closest('.poem-card').querySelector('h3')?.textContent;
+      openModal(src, title);
+    });
+  });
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal();
+  });
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+    if (modal.style.display === 'flex') {
+      if (e.key === 'ArrowLeft') changeSlide(-1);
+      if (e.key === 'ArrowRight') changeSlide(1);
+    }
+  });
+
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.classList.remove('lazy');
+          observer.unobserve(img);
+        }
       });
-    </script>
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
+</script>
+
+    
 
     <!-- modal container -->
     </div>
